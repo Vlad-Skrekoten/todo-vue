@@ -27,3 +27,7 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### Photo
+
+![зображення](https://github.com/Vlad-Skrekoten/todo-vue/assets/88341932/e7d7eb25-f16d-43c1-8109-ae75134a70d6)
