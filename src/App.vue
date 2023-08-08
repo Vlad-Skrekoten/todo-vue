@@ -29,6 +29,11 @@ export default {
         const noCompleteMask = this.Completelist.splice(index, 1);
         this.Dolist.push(...noCompleteMask);
       }
+    },
+
+    remove(index, type) {
+      const toDO = type === 'need' ? this.Dolist : this.Completelist;
+      toDO.splice(index, 1);
     }
   }
 }
@@ -46,27 +51,36 @@ export default {
     </header>
     <main>
       <div class="title_task">Task</div>
-      <div class="window_task">
-        <ul class="mask-list">
-          <li v-for="(mask, index) in  Dolist " :key="mask.id">
-            <label class="cont_check">
-              <input type="checkbox" v-on:change="doCheck(index, 'need')">
-              <div class="checkmark"></div>
-            </label>
-            <span>{{ mask.title }}</span>
-          </li>
-        </ul>
-      </div>
+      <ul class="mask-list">
+        <li v-for="(mask, index) in  Dolist " :key="mask.id">
+          <label class="cont_check">
+            <input type="checkbox" v-on:change="doCheck(index, 'need')">
+            <div class="checkmark"></div>
+          </label>
+          <span>{{ mask.title }}</span>
+          <button class="delete" v-on:click="remove(index, 'need')"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+              height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+              <path
+                d="M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7H6zm4 12H8v-9h2v9zm6 0h-2v-9h2v9zm.618-15L15 2H9L7.382 4H3v2h18V4z">
+              </path>
+            </svg></button>
+        </li>
+      </ul>
       <div class="title_done">Done</div>
       <ul class="mask_list complete_list">
         <li v-for="(mask, index) in Completelist" :key="mask.id">
-          <div class="window_done">
-            <label class="cont_check">
-              <input checked="checked" type="checkbox" v-on:change="doCheck(index, 'complete')">
-              <div class="checkmark"></div>
-            </label>
-            <span>{{ mask.title }}</span>
-          </div>
+          <label class="cont_check">
+            <input checked="checked" type="checkbox" v-on:change="doCheck(index, 'complete')">
+            <div class="checkmark"></div>
+          </label>
+          <span>{{ mask.title }}</span>
+          <button class="delete" v-on:click="remove(index, 'complete')"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+              height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+              <path
+                d="M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7H6zm4 12H8v-9h2v9zm6 0h-2v-9h2v9zm.618-15L15 2H9L7.382 4H3v2h18V4z">
+              </path>
+            </svg>
+          </button>
         </li>
       </ul>
     </main>
@@ -126,16 +140,23 @@ export default {
   }
 }
 
+main {
+  width: 100%;
+  max-width: 400px;
+}
+
 li {
   padding: 10px;
   display: grid;
-  grid-template-columns: repeat(2, max-content);
+  grid-template-columns: repeat(3, max-content);
   align-items: center;
   gap: 10px;
 }
 
+
+
 .send {
-  width:100%;
+  width: 100%;
   max-width: 80px;
   color: $black;
   background: $grey;
@@ -168,16 +189,18 @@ main {
   font-size: 20px;
 }
 
-.window_task,
-.window_done {
-  display: grid;
-  grid-template-columns: repeat(2, max-content);
-  justify-content: start;
-  align-items: center;
-  gap: 10px;
-}
+.delete {
+  border: none;
+  background: #00000000;
+  cursor: pointer;
+  @include transition(transform);
 
-span.check {
-  text-decoration: line-through 2px solid $red;
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
 }
 </style>
