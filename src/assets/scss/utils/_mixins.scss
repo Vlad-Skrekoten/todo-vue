@@ -1,0 +1,10 @@
+@mixin type {
+    width: 101px;
+    height: 33px;
+    flex-shrink: 0;
+    color: $white;
+}
+
+@mixin transition($action) {
+    transition: $action .3s ease;
+}
