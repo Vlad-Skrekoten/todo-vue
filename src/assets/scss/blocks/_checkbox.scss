@@ -1,4 +1,5 @@
-/* Hide the default checkbox */
+@import '../utils/variables';
+
 .cont_check input {
     position: absolute;
     opacity: 0;
@@ -22,7 +23,7 @@
     left: 0;
     height: 1.3em;
     width: 1.3em;
-    background-color: #e5e5e5;
+    background-color: $white;
     border-radius: 50%;
 }
 
