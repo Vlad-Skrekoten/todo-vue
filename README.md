@@ -31,5 +31,6 @@ npm run build
 
 ### Photo
 
-![зображення](https://github.com/Vlad-Skrekoten/todo-vue/assets/88341932/9111df61-f83e-4792-95b1-0a68d5e39aa4)
+![зображення](https://github.com/Vlad-Skrekoten/todo-vue/assets/88341932/1bb31292-bcb3-4aa9-b3cf-966063a10cfd)
+
 
